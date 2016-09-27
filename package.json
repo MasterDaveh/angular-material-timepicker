@@ -1,0 +1,36 @@
+{
+  "name": "material-timepicker",
+  "version": "0.0.0",
+  "description": "An Angular.js timepicker directive following Google Material Design's guidelines",
+  "main": "index.js",
+  "style": "",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MasterDaveh/material-timepicker"
+  },
+  "keywords": [
+    "angular",
+    "material",
+    "design",
+    "timepicker",
+    "directive"
+  ],
+  "author": {
+    "name": "Davide Vico",
+    "email": "davide.vico@alice.it"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MasterDaveh/material-timepicker/issues"
+  },
+  "homepage": "https://github.com/MasterDaveh/material-timepicker",
+  "dependencies": {
+    "angular": "~1.5.8"
+  }
+}
