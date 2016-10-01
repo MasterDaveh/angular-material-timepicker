@@ -17,32 +17,23 @@
 
 		.timepicker-section.timepicker-date-time
 
-			// CERCHIO ESTERNO
 			.time-circle-outer
 
-				// CENTRO LANCETTA
 				.time-circle-center
 
-				// LANCETTA H > 12
 				.time-circle-hand.time-circle-hand-large(ng-class="{'deg-{{$index+1}}': true, 'hand-l-{{$index+1}}': true, 'active': hour==h, 'fade-out': show.explode, 'fade-in': !show.explode}" ng-repeat="h in [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 00]" ng-show="show.hours")
 
-				// H > 12
 				.time(ng-class="{'selected': hour==time, 'no-selected': hour!=time, 'time-{{$index+1}}': true, 'explode-{{$index+1}}': show.explode, 'implode-{{$index+1}}': !show.explode}" ng-click="setHour(time)" ng-repeat="time in ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '00']" ng-show="show.hours") {{time}}
 
-				// LANCETTA MINUTI
 				.time-circle-hand.time-circle-hand-large(ng-class="{'deg-{{$index+1}}': true, 'hand-l-{{$index+1}}': true, 'active': minute==min, 'fade-out': show.explode_min, 'fade-in': !show.explode_min}" ng-repeat="min in [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 0]" ng-show="show.minutes")
 
-				// MINUTI
 				.time.minute(ng-class="{'selected': minute==time, 'no-selected': minute!=time, 'time-{{$index+1}}': true, 'explode-{{$index+1}}': show.explode_min, 'implode-{{$index+1}}': !show.explode_min,}" ng-click="setMinutes(time)" ng-repeat="time in ['5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '00']" ng-show="show.minutes") {{time}}
 
 
-				// CERCHIO INTERNO (H)
 				.time-circle-inner(ng-show="show.hours")
 
-					// LANCETTA <= 12
 					.time-circle-hand(ng-class="{'deg-{{h}}': true, 'hand-{{$index+1}}': true, 'active': hour==h, 'fade-out': show.explode, 'fade-in': !show.explode}" ng-repeat="h in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]")
 
-					// H <= 12
 					.time(ng-class="{'selected': hour==time, 'no-selected': hour!=time, 'time-{{$index+1}}': true, 'explode-{{$index+1}}': show.explode, 'implode-{{$index+1}}': !show.explode}" ng-click="setHour(time)" ng-repeat="time in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]") {{time}}
 
 		.timepicker-footer
