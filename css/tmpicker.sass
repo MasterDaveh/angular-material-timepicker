@@ -1,9 +1,10 @@
-$primary:     #013440
 $hue:         #054351
 $hue-light:   #165361
 
-// yellow
-$accent:      #FFF204
+
+--hue: $hue
+--hue-light: $hue-light
+
 
 $bezier: cubic-bezier(0.4, 0.0, 0.2, 1)
 $bezier_out: cubic-bezier(0.4, 0.0, 0.6, 1)
@@ -203,7 +204,7 @@ $oE: 0
 
   .timepicker-preview
     height: auto
-    background: $hue
+    background: var(--hue-light)
 
     transition: padding 330ms $bezier
     padding: 20px
@@ -271,7 +272,7 @@ $oE: 0
         background: transparent
 
       .selected
-        background: rgba($hue, 0.4)
+        background: rgba(var(--hue), 0.4)
         color: white
 
 
@@ -284,7 +285,7 @@ $oE: 0
         left: calc(50% - 2px)
 
       .active
-        background: rgba($hue, 0.4)
+        background: rgba(var(--hue), 0.4)
 
       .time-circle-center
         width: 6px
@@ -439,7 +440,7 @@ $oE: 0
 
         .selected
           color: white
-          background: rgba($hue, 0.4)
+          background: rgba(var(--hue), 0.4)
 
 
         .time-circle-hand
@@ -449,7 +450,7 @@ $oE: 0
           height: 66px
 
         .active
-          background: rgba($hue, 0.4)
+          background: rgba(var(--hue), 0.4)
 
 
         // #region time(numeri-inner)
@@ -595,7 +596,7 @@ $oE: 0
       box-sizing: border-box
       float: right
       padding: 10px
-      color: $hue-light
+      color: var(--hue-light)
       font-weight: 700
       cursor: pointer
       height: 100%
