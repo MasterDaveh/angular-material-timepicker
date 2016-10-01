@@ -1,0 +1,9 @@
+.mbutton, button {
+  background: transparent;
+  border: none;
+  transition: background 330ms ease-in-out;
+  outline: none; }
+  .mbutton:active, button:active {
+    background: rgba(0, 0, 0, 0.3); }
+    .mbutton:active *, button:active * {
+      opacity: 0.5; }

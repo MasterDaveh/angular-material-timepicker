@@ -1,0 +1,576 @@
+$primary:     #013440
+$hue:         #054351
+$hue-light:   #165361
+
+// yellow
+$accent:      #FFF204
+
+$bezier: cubic-bezier(0.4, 0.0, 0.2, 1)
+$bezier_out: cubic-bezier(0.4, 0.0, 0.6, 1)
+$bezier_in: cubic-bezier(0.0, 0.0, 0.2, 1)
+$bezier_bounce: cubic-bezier(0.77,-0.89, 0.29, 0.88)
+$bezier_bounce2: cubic-bezier(0, 0.47, 0.32, 1.97)
+
+@import 'https://fonts.googleapis.com/css?family=Roboto:400,500,700'
+
+body, html
+  font-family: 'Roboto'
+
+@mixin valign($position: relative)
+  position: $position
+  top: 50%
+  -webkit-transform: translateY(-50%)
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+
+// #region animations
+
+// #region explode/implode
+
+/* mixin per generare il keyframde di explode
+@mixin keyframe-ex($name, $left1, $top1, $left2, $top2, $oStart, $oEnd)
+  @keyframes #{$name}
+    0%
+      transform: translate(0, 0)
+    0%, 10%
+      opacity: $oStart
+
+    10%
+      transform: translate($left1, $top1)
+    70%
+      opacity: calc(abs($oStart-$oEnd)/2)
+    100%
+      transform: translate($left2, $top2)
+      opacity: $oEnd
+
+/* generazione dei keyframes per  explode/implode per 12 elementi
+$oS: 1
+$oE: 0
++keyframe-ex(explode-12,  0%,   20%,   0%,    -100%, $oS, $oE)
++keyframe-ex(explode-1,  -20%,  20%,   100%,  -100%, $oS, $oE)
++keyframe-ex(explode-2,  -20%,  20%,   100%,  -100%, $oS, $oE)
++keyframe-ex(explode-3,  -20%,  0%,    100%,   0%,   $oS, $oE)
++keyframe-ex(explode-4,  -20%, -20%,   100%,   100%, $oS, $oE)
++keyframe-ex(explode-5,  -20%, -20%,   100%,   100%, $oS, $oE)
++keyframe-ex(explode-6,   0%,   20%,   0%,     100%, $oS, $oE)
++keyframe-ex(explode-7,   20%, -20%,  -100%,   100%, $oS, $oE)
++keyframe-ex(explode-8,   20%, -20%,  -100%,   100%, $oS, $oE)
++keyframe-ex(explode-9,   20%,  0%,   -100%,   0%,   $oS, $oE)
++keyframe-ex(explode-10,  20%,  20%,  -100%,  -100%,  $oS, $oE)
++keyframe-ex(explode-11,  20%,  20%,  -100%,  -100%,  $oS, $oE)
+
+/* mixin di impostazioni per l'animazione explode/implode
+@mixin explode($i, $direction: normal, $delay: 0ms, $duration: 250ms)
+  animation: explode-#{$i} $duration cubic-bezier(0.52, -0.05, 1, 1.07)
+    direction:  $direction
+    delay:      $delay
+    fill-mode:  forwards
+
+/* mixin che richiama l'animazione explode/implode
+@mixin explode-implode()
+  @for $i from 1 through 12
+    .explode-#{$i}
+      +explode(#{$i}, normal, 0, 500ms)
+
+  @for $i from 1 through 12
+    .implode-#{$i}
+      +explode(#{$i}, reverse)
+
+// #endregion
+
+// #region elongate/shorten
+
+/*keyframe per l'animazione elongate/shorten
+@keyframes elongate
+  0%
+    height: 100%
+  0%, 10%
+    opacity: 1
+  10%
+    height: 105%
+  100%
+    height: 120%
+    opacity: 0
+
+/* mixin di impostazioni per l'animazione elongate/shorten
+@mixin elongate($direction: normal, $delay: 0ms, $duration: 250ms)
+  animation: elongate $duration cubic-bezier(0.52, -0.05, 1, 1.07)
+    direction:  $direction
+    delay:      $delay
+    fill-mode:  forwards
+
+/* mixin per richiamare l'animazione elongate/shorten
+@mixin elongate-shorten()
+  .elongate
+    +elongate()
+
+  .shorten
+    +elongate(reverse)
+
+// #endregion
+
+// #region fade
+
+/* keyframe per l'animazione fade-in/out
+@keyframes tp-fade-out
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+/* mixin di impostazioni per l'animazione fade-in/out
+@mixin fade($direction: normal, $delay: 0ms, $duration: 330ms)
+  animation: tp-fade-out $duration ease-in-out
+    direction:  $direction
+    delay:      $delay
+    fill-mode:  forwards
+
+/* mixin per richiamare l'animazione fade-in/out
+@mixin fade-in-out()
+  .fade-out
+    +fade(normal, 0, 500ms)
+
+  .fade-in
+    +fade(reverse)
+
+// #endregion
+
+// #endregion
+
+.timepicker#tmpicker
+
+  .timepicker-modal
+    position: fixed
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    pointer-events: none
+
+    transition: background 330ms $bezier
+    background: transparent
+
+    &.active
+      pointer-events: all
+      background: rgba(black, 0.6)
+
+  .timepicker-display
+    line-height: normal
+    padding: 5px
+    min-height: 0
+
+
+  .timepicker-content
+    background: white
+
+  .last-time
+    height: auto
+    background: white
+    padding-top: 15px
+    padding-bottom: 5px
+    padding-left: 15px
+
+  .timepicker-absolute
+    // border: 0px
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    display: inline-block
+    width: 280px
+
+  .timepicker-toggle
+    padding: 10px
+    line-height: normal
+    height: auto
+    color: rgba(0, 0, 0, 0.7)
+    font:
+      weight: 400
+      size: 14px
+
+  .timepicker-preview
+    height: auto
+    background: $hue
+    padding: 20px
+
+    .wrapper
+      font-size: 0px
+      text-align: center
+      padding-bottom: 0px
+      font-weight: 400
+
+      span
+        font-size: 40px
+        letter-spacing: 1px
+        color: white
+        &:nth-child(2)
+          margin: auto 2px
+
+      .disable
+        opacity: 0.5
+
+  .timepicker-section
+    margin-top: 20px
+
+    .time-circle-outer
+      background: #ccc
+      width: 270px
+      height: 270px
+      color: rgba(0, 0, 0, 0.7)
+      border-radius: 50%
+      position: relative
+      margin: 0 auto
+
+      +explode-implode()
+      +fade-in-out()
+      // +elongate-shorten()
+
+      .time
+        font-size: 10px
+        position: absolute
+        // margin-top: -15px
+        // margin-left: -15px
+        background-color: #b4b4b4
+        border-radius: 50%
+        padding: 5px
+        height: 28px
+        width: 28px
+        box-sizing: border-box
+        text-align: center
+        // font-size: 13px
+        cursor: pointer
+        line-height: 18px
+
+      .minute
+        font-size: 15px
+        color: inherit
+
+
+      .no-selected
+        background: transparent
+
+      .selected
+        background: rgba($hue, 0.4)
+        color: white
+
+
+      .time-circle-hand-large
+        background: transparent
+        width: 2px
+        height: 104px
+        position: absolute
+        top: calc(50% - 107px)
+        left: calc(50% - 2px)
+
+      .active
+        background: rgba($hue, 0.4)
+
+      .time-circle-center
+        width: 6px
+        height: 6px
+        background: rgba(0, 0, 0, 0.7)
+        border-radius: 50%
+        position: absolute
+        top: calc(50% - 3px)
+        left: calc(50% - 3px)
+
+      // #region time(numeri-outer)
+
+
+      .time-1
+        top: 17px
+        left: calc(50% + 46px)
+
+      .time-2
+        top: 61px
+        left: calc(50% + 89px)
+
+      .time-3
+        top: 121px
+        left: calc(50% + 106px)
+
+      .time-4
+        top: 183px
+        left: calc(50% + 89px)
+
+      .time-5
+        top: 224px
+        left: calc(50% + 46px)
+
+      .time-6
+        top: 241px
+        left: calc(50% - 15px)
+
+      .time-11
+        top: 16px
+        right: calc(50% + 46px)
+
+      .time-10
+        top: 61px
+        right: calc(50% + 89px)
+
+      .time-9
+        top: 121px
+        right: calc(50% + 106px)
+
+      .time-8
+        top: 181px
+        right: calc(50% + 90px)
+
+      .time-7
+        top: 227px
+        right: calc(50% + 44px)
+
+      .time-12
+        top: 0
+        left: calc(50% - 14px)
+
+      // #endregion
+
+      // #region hand-l(lancetta)
+      .hand-l-12
+        left: calc(50% - 1px)
+
+      .hand-l-1
+        left: calc(50% + 26px)
+        top: 36px
+        height: 105px
+        transform: rotate(30deg)
+
+      .hand-l-2
+        left: calc(50% + 44.5px)
+        top: calc(50% - 78px)
+        transform: rotate(60deg)
+
+      .hand-l-3
+        height: 104px
+        top: calc(50% - 52px)
+        left: calc(50% + 53px)
+        transform: rotate(90deg)
+
+      .hand-l-4
+        height: 103px
+        top: calc(50% - 24px)
+        left: calc(50% + 46px)
+        transform: rotate(120deg)
+
+      .hand-l-5
+        height: 102px
+        top: calc(50% - 4px)
+        left: calc(50% + 26px)
+        transform: rotate(150deg)
+
+      .hand-l-6
+        height: 103px
+        top: calc(50% + 3px)
+        left: calc(50% - 1px)
+
+      .hand-l-7
+        height: 105px
+        top: calc(50% - 5px)
+        left: calc(50% - 28px)
+        transform: rotate(210deg)
+
+
+      .hand-l-8
+        height: 104px
+        top: calc(50% - 25px)
+        left: calc(50% - 48px)
+        transform: rotate(240deg)
+
+      .hand-l-9
+        top: calc(50% - 52px)
+        left: calc(50% - 55px)
+        transform: rotate(270deg)
+
+      .hand-l-10
+        height: 106px
+        top: calc(50% - 80px)
+        left: calc(50% - 47px)
+        transform: rotate(300deg)
+
+      .hand-l-11
+        height: 105px
+        top: calc(50% - 100px)
+        left: calc(50% - 29px)
+        transform: rotate(330deg)
+
+
+      // #endregion
+
+      .time-circle-inner
+        margin: 0 auto
+        position: absolute
+        left: 40px
+        right: 40px
+        top: 40px
+        bottom: 40px
+
+        +explode-implode()
+        +fade-in-out()
+        // +elongate-shorten()
+
+        .time
+          font-size: 15px
+
+        .no-selected
+          background: transparent
+
+        .selected
+          color: white
+          background: rgba($hue, 0.4)
+
+
+        .time-circle-hand
+          position: absolute
+          background: transparent
+          width: 2px
+          height: 66px
+
+        .active
+          background: rgba($hue, 0.4)
+
+
+        // #region time(numeri-inner)
+
+        .time-1
+          top: 8px
+          left: calc(50% + 60px - 25px)
+
+        .time-2
+          top: 41px
+          left: calc(50% + 103px - 38px)
+
+        .time-3
+          top: 81px
+          left: calc(50% + 120px - 43px)
+
+        .time-4
+          top: 124px
+          left: calc(50% + 103px - 40px)
+
+        .time-5
+          top: 155px
+          left: calc(50% + 60px - 27px)
+
+        .time-6
+          top: 164px
+          left: calc(50% - 14px)
+
+
+        .time-11
+          top: 8px
+          right: calc(50% + 60px - 28px)
+
+        .time-10
+          top: 41px
+          right: calc(50% + 103px - 40px)
+
+        .time-9
+          top: 81px
+          right: calc(50% + 120px - 43px)
+
+        .time-8
+          top: 123px
+          right: calc(50% + 103px - 38px)
+
+        .time-7
+          top: 155px
+          right: calc(50% + 60px - 28px)
+
+        .time-12
+          top: -7px
+          left: calc(50% - 14px)
+        // #endregion
+
+        // #region hand(lancetta)
+
+        // top: calc(50% - 69px)
+        // left: calc(50% - 2px)
+
+        .hand-12
+          left: calc(50% - 1px)
+          top: calc(50% - 74px)
+          height: 71px
+
+        .hand-1
+          top: calc(50% - 68px)
+          left: calc(50% + 20px)
+          transform: rotate(32deg)
+          height: 71px
+
+        .hand-2
+          top: calc(50% - 55px)
+          left: calc(50% + 32px)
+          transform: rotate(63deg)
+          height: 75px
+
+        .hand-3
+          top: calc(50% - 37px)
+          left: calc(50% + 39px)
+          height: 75px
+          transform: rotate(90deg)
+
+        .hand-4
+          top: calc(50% - 17px)
+          left: calc(50% + 32px)
+          height: 72px
+          transform: rotate(120deg)
+
+        .hand-5
+          top: calc(50% - 3px)
+          left: calc(50% + 20px)
+          height: 71px
+          transform: rotate(148deg)
+
+        .hand-6
+          top: calc(50% + 3px)
+          left: calc(50% - 1px)
+
+        .hand-7
+          top: calc(50% - 3px)
+          left: calc(50% - 20px)
+          transform: rotate(210deg)
+          height: 72px
+
+        .hand-8
+          top: calc(50% - 19px)
+          left: calc(50% - 35px)
+          transform: rotate(242deg)
+          height: 74px
+
+        .hand-9
+          top: calc(50% - 37px)
+          left: calc(50% - 41px)
+          height: 74px
+          transform: rotate(270deg)
+
+        .hand-10
+          top: calc(50% - 53px)
+          left: calc(50% - 34px)
+          height: 71px
+          transform: rotate(298deg)
+
+        .hand-11
+          top: calc(50% - 67px)
+          left: calc(50% - 21px)
+          height: 71px
+          transform: rotate(328deg)
+
+        // #endregion
+
+  .timepicker-footer
+    margin-top: 10px
+    // height: auto
+    //+clearfix
+
+    &:after
+      clear: both
+
+    button
+      display: inline-block
+      box-sizing: border-box
+      float: right
+      padding: 10px
+      color: $hue
+      font-weight: 500
