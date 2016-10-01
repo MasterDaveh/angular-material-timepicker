@@ -1,5 +1,3 @@
-
-
 angular.module('material.timepicker', [])
 
 .directive('materialTimepicker', ['$timeout', function($timeout){
@@ -15,7 +13,6 @@ angular.module('material.timepicker', [])
 
       // controls opening/closing of the modal
       $scope.state = false;
-      $scope.state = true;
 
       // store initial time
       $scope.init = moment($scope.model);
@@ -24,6 +21,9 @@ angular.module('material.timepicker', [])
         hh: $scope.init.format('HH'),
         mm: $scope.init.minute(5*Math.ceil($scope.init.minute()/5)).format('mm')
       };
+
+      // the value of the model needs to be rounded also
+      $scope.model.minute($scope.init.minute());
 
       // time before opening the modal
       $scope.display = {

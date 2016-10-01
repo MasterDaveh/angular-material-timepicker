@@ -5,11 +5,13 @@
     <link href="css/tmpicker.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    <script src="js/app.js"></script>
     <script src="js/material-timepicker.min.js"></script>
+    <script src="js/app.js"></script>
   </head>
   <title>Example</title>
   <body ng-app="exampleApp">
-    <material-timepicker model="model"></material-timepicker>
+    <div ng-controller="mainCtrl">
+      <material-timepicker model="model"></material-timepicker>
+    </div>
   </body>
 </html>

@@ -1,18 +1,11 @@
 $hue:         #054351
 $hue-light:   #165361
 
-
---hue: $hue
---hue-light: $hue-light
-
+:root
+  --hue: $hue
+  --hue-light: $hue-light
 
 $bezier: cubic-bezier(0.4, 0.0, 0.2, 1)
-$bezier_out: cubic-bezier(0.4, 0.0, 0.6, 1)
-$bezier_in: cubic-bezier(0.0, 0.0, 0.2, 1)
-$bezier_bounce: cubic-bezier(0.77,-0.89, 0.29, 0.88)
-$bezier_bounce2: cubic-bezier(0, 0.47, 0.32, 1.97)
-
-@import 'https://fonts.googleapis.com/css?family=Roboto:400,500,700'
 
 body, html
   font-family: 'Roboto'
@@ -272,7 +265,9 @@ $oE: 0
         background: transparent
 
       .selected
-        background: rgba(var(--hue), 0.4)
+        // background: rgba(var(--hue), 0.4)
+        background: var(--hue)
+        opacity: 0.4
         color: white
 
 
@@ -285,7 +280,9 @@ $oE: 0
         left: calc(50% - 2px)
 
       .active
-        background: rgba(var(--hue), 0.4)
+        // background: rgba(var(--hue), 0.4)
+        background: var(--hue)
+        opacity: 0.4
 
       .time-circle-center
         width: 6px
@@ -440,7 +437,9 @@ $oE: 0
 
         .selected
           color: white
-          background: rgba(var(--hue), 0.4)
+          // background: rgba(var(--hue), 0.4)
+          background: var(--hue)
+          opacity: 0.4
 
 
         .time-circle-hand
@@ -450,7 +449,9 @@ $oE: 0
           height: 66px
 
         .active
-          background: rgba(var(--hue), 0.4)
+          // background: rgba(var(--hue), 0.4)
+          background: var(--hue)
+          opacity: 0.4
 
 
         // #region time(numeri-inner)

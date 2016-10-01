@@ -8,10 +8,11 @@ html
 		script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js")
 		script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js")
 
-		script(src="js/app.js")
 		script(src="js/material-timepicker.min.js")
+		script(src="js/app.js")
 
 	title Example
 
 	body(ng-app="exampleApp")
-		material-timepicker(model="model")
+		div(ng-controller="mainCtrl")
+			material-timepicker(model="model")
