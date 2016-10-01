@@ -55,7 +55,7 @@ angular.module('material.timepicker', [])
       $scope.setHour = function(hour){
         $scope.model = moment($scope.model).hour(hour).toDate();
 
-        $timeout($scope.goMinutes, 10 );
+        $timeout($scope.goMinutes, 50 );
       };
 
       // show minutes clock

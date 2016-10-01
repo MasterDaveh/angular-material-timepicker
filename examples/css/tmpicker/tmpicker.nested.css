@@ -204,51 +204,61 @@ body, html {
   min-height: 0; }
 
 .timepicker#tmpicker .timepicker-content {
-  background: white; }
+  background: white;
+  transition: all 330ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotate(0deg);
+  position: fixed;
+  top: calc( 50% - 230px);
+  left: calc( 50% - 140px);
+  display: inline-block;
+  width: 280px;
+  height: 460px;
+  overflow: hidden; }
 
 .timepicker#tmpicker .last-time {
-  height: auto;
+  box-sizing: border-box;
   background: white;
   padding-top: 15px;
   padding-bottom: 5px;
-  padding-left: 15px; }
-
-.timepicker#tmpicker .timepicker-absolute {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: inline-block;
-  width: 280px; }
+  padding-left: 15px;
+  transition: all 330ms cubic-bezier(0.4, 0, 0.2, 1);
+  height: 35px;
+  opacity: 1; }
 
 .timepicker#tmpicker .timepicker-toggle {
   padding: 10px;
   line-height: normal;
   height: auto;
   color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
   font-weight: 400;
   font-size: 14px; }
 
 .timepicker#tmpicker .timepicker-preview {
   height: auto;
   background: #054351;
+  transition: padding 330ms cubic-bezier(0.4, 0, 0.2, 1);
   padding: 20px; }
   .timepicker#tmpicker .timepicker-preview .wrapper {
     font-size: 0px;
     text-align: center;
     padding-bottom: 0px;
-    font-weight: 400; }
+    font-weight: 400;
+    transition: all 330ms cubic-bezier(0.4, 0, 0.2, 1); }
     .timepicker#tmpicker .timepicker-preview .wrapper span {
       font-size: 40px;
       letter-spacing: 1px;
-      color: white; }
+      color: white;
+      cursor: pointer; }
       .timepicker#tmpicker .timepicker-preview .wrapper span:nth-child(2) {
-        margin: auto 2px; }
+        margin: auto 2px;
+        cursor: default; }
     .timepicker#tmpicker .timepicker-preview .wrapper .disable {
       opacity: 0.5; }
 
 .timepicker#tmpicker .timepicker-section {
-  margin-top: 20px; }
+  margin-top: 20px;
+  transition: transform 330ms cubic-bezier(0.4, 0, 0.2, 1); }
   .timepicker#tmpicker .timepicker-section .time-circle-outer {
     background: #ccc;
     width: 270px;
@@ -760,7 +770,10 @@ body, html {
         transform: rotate(328deg); }
 
 .timepicker#tmpicker .timepicker-footer {
-  margin-top: 10px; }
+  margin-top: 10px;
+  height: 40px;
+  transition: transform 330ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top right; }
   .timepicker#tmpicker .timepicker-footer:after {
     clear: both; }
   .timepicker#tmpicker .timepicker-footer button {
@@ -768,5 +781,27 @@ body, html {
     box-sizing: border-box;
     float: right;
     padding: 10px;
-    color: #054351;
-    font-weight: 500; }
+    color: #165361;
+    font-weight: 700;
+    cursor: pointer;
+    height: 100%; }
+
+@media (orientation: landscape) {
+  .timepicker#tmpicker .timepicker-content {
+    transform: rotate(-90deg);
+    width: 320px; }
+    .timepicker#tmpicker .timepicker-content .timepicker-preview {
+      padding: 40px; }
+      .timepicker#tmpicker .timepicker-content .timepicker-preview .wrapper {
+        transform: rotate(90deg); }
+        .timepicker#tmpicker .timepicker-content .timepicker-preview .wrapper span {
+          letter-spacing: -2px; }
+    .timepicker#tmpicker .timepicker-content .last-time {
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      height: 0; }
+    .timepicker#tmpicker .timepicker-content .timepicker-section {
+      transform: rotate(90deg); }
+    .timepicker#tmpicker .timepicker-content .timepicker-footer {
+      transform: rotate(90deg) translate(33px, 287px); } }

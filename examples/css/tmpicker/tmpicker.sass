@@ -162,28 +162,36 @@ $oE: 0
 
   .timepicker-content
     background: white
+    transition: all 330ms $bezier
+    transform: rotate(0deg)
+
+    position: fixed
+    top: calc( 50% - 230px)
+    left: calc( 50% - 140px )
+    display: inline-block
+    width: 280px
+    height: 460px
+    overflow: hidden
 
   .last-time
-    height: auto
+    box-sizing: border-box
     background: white
     padding-top: 15px
     padding-bottom: 5px
     padding-left: 15px
 
+    transition: all 330ms $bezier
+    height: 35px
+    opacity: 1
+
   .timepicker-absolute
-    // border: 0px
-    position: fixed
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    display: inline-block
-    width: 280px
 
   .timepicker-toggle
     padding: 10px
     line-height: normal
     height: auto
     color: rgba(0, 0, 0, 0.7)
+    cursor: pointer
     font:
       weight: 400
       size: 14px
@@ -191,26 +199,34 @@ $oE: 0
   .timepicker-preview
     height: auto
     background: $hue
+
+    transition: padding 330ms $bezier
     padding: 20px
+
 
     .wrapper
       font-size: 0px
       text-align: center
       padding-bottom: 0px
       font-weight: 400
+      transition: all 330ms $bezier
 
       span
         font-size: 40px
         letter-spacing: 1px
         color: white
+        cursor: pointer
+
         &:nth-child(2)
           margin: auto 2px
+          cursor: default
 
       .disable
         opacity: 0.5
 
   .timepicker-section
     margin-top: 20px
+    transition: transform 330ms $bezier
 
     .time-circle-outer
       background: #ccc
@@ -561,8 +577,10 @@ $oE: 0
 
   .timepicker-footer
     margin-top: 10px
-    // height: auto
-    //+clearfix
+    height: 40px
+
+    transition: transform 330ms $bezier
+    transform-origin: top right
 
     &:after
       clear: both
@@ -572,5 +590,35 @@ $oE: 0
       box-sizing: border-box
       float: right
       padding: 10px
-      color: $hue
-      font-weight: 500
+      color: $hue-light
+      font-weight: 700
+      cursor: pointer
+      height: 100%
+
+@media (orientation: landscape)
+  .timepicker#tmpicker
+
+    .timepicker-content
+      transform: rotate(-90deg)
+      width: 320px
+
+      .timepicker-preview
+        padding: 40px
+
+        .wrapper
+          transform: rotate(90deg)
+
+          span
+            letter-spacing: -2px
+
+      .last-time
+        opacity: 0
+        pointer-events: none
+        position: absolute
+        height: 0
+
+      .timepicker-section
+        transform: rotate(90deg)
+
+      .timepicker-footer
+        transform: rotate(90deg) translate(33px, 287px)

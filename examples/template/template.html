@@ -3,7 +3,7 @@
   <div ng-class="{'active': state}" ng-click="setState(false)" class="timepicker-modal"></div>
   <input type="hidden" ng-model="model"/>
   <div ng-click="toggleState()" ng-class="{'error': err}" class="timepicker-display timepicker-toggle mbutton">{{display.hh}}:{{display.mm}}</div>
-  <div ng-if="state" ng-class="{'timepicker-absolute': config.modal}" class="timepicker-content timepicker-absolute">
+  <div ng-if="state" class="timepicker-content">
     <div class="last-time">{{display.hh}}:{{display.mm}}</div>
     <div class="timepicker-preview">
       <div class="wrapper"><span ng-click="goHours()" ng-class="{'disable': show.minutes}">{{timePreview.hh}}</span><span class="disable">:</span><span ng-click="goMinutes()" ng-class="{'disable': show.hours}">{{timePreview.mm}}</span></div>

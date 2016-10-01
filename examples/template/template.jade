@@ -7,7 +7,7 @@
 
 	.timepicker-display.timepicker-toggle.mbutton(ng-click="toggleState()" ng-class="{'error': err}") {{display.hh}}:{{display.mm}}
 
-	.timepicker-content.timepicker-absolute(ng-if="state" ng-class="{'timepicker-absolute': config.modal}")
+	.timepicker-content(ng-if="state")
 		.last-time {{display.hh}}:{{display.mm}}
 		.timepicker-preview
 			.wrapper
