@@ -1,10 +1,6 @@
 $hue:         #054351
 $hue-light:   #165361
 
-.timepicker#tmpicker
-  --hue: $hue
-  --hue-light: $hue-light
-
 $bezier: cubic-bezier(0.4, 0.0, 0.2, 1)
 
 .mbutton, button
@@ -188,7 +184,7 @@ $oE: 0
 
   .timepicker-preview
     height: auto
-    background: var(--hue-light)
+    background: $hue-light
 
     transition: padding 330ms $bezier
     padding: 20px
@@ -253,7 +249,7 @@ $oE: 0
         background: transparent
 
       .selected
-        background: var(--hue)
+        background: $hue
         opacity: 0.4
         color: white
 
@@ -267,7 +263,7 @@ $oE: 0
         left: calc(50% - 2px)
 
       .active
-        background: var(--hue)
+        background: $hue
         opacity: 0.4
 
       .time-circle-center
@@ -416,7 +412,7 @@ $oE: 0
 
         .selected
           color: white
-          background: var(--hue)
+          background: $hue
           opacity: 0.4
 
 
@@ -427,7 +423,7 @@ $oE: 0
           height: 66px
 
         .active
-          background: var(--hue)
+          background: $hue
           opacity: 0.4
 
         // inner circle numbers positioning
@@ -564,7 +560,7 @@ $oE: 0
       box-sizing: border-box
       float: right
       padding: 10px
-      color: var(--hue-light)
+      color: $hue-light
       font-weight: 700
       cursor: pointer
       height: 100%
