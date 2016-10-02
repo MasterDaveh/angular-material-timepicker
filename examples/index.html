@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <link href="css/tmpicker.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <style>body, html { font-family: 'Roboto' }</style>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
     <script src="js/material-timepicker.min.js"></script>
@@ -11,7 +13,7 @@
   <title>Example</title>
   <body ng-app="exampleApp">
     <div ng-controller="mainCtrl">
-      <material-timepicker model="model"></material-timepicker>
+      <material-timepicker model="model" url="template/template.html"></material-timepicker>
     </div>
   </body>
 </html>

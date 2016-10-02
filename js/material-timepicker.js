@@ -6,10 +6,14 @@ angular.module('material.timepicker', [])
     replace: true,
     scope: {
       model: '=',
-      err: '=?'
+      url: '='
     },
-    templateUrl: 'template/template.html',
     link: function($scope, element, attributes) {
+
+      $scope.getUrl = function() {
+        // TODO: make it work using the scope
+        return attributes.url;
+      }
 
       // controls opening/closing of the modal
       $scope.state = false;
@@ -36,7 +40,7 @@ angular.module('material.timepicker', [])
         hours:        true, // show hour clock
         minutes:      false, // minute clock
         explode:      false, // hour explosion animation
-        explode_min:  false // minutes explosion animation
+        explode_min:  false, // minutes explosion animation
       };
 
       // show hours clock
@@ -124,8 +128,7 @@ angular.module('material.timepicker', [])
         }
       };
 
-    }
+    },
+    template: '<div ng-include="getUrl()">'
   }
 }]);
-
-// #endregion

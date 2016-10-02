@@ -1,14 +1,11 @@
 $hue:         #054351
 $hue-light:   #165361
 
-:root
+.timepicker#tmpicker
   --hue: $hue
   --hue-light: $hue-light
 
 $bezier: cubic-bezier(0.4, 0.0, 0.2, 1)
-
-body, html
-  font-family: 'Roboto'
 
 .mbutton, button
   background: transparent
@@ -22,11 +19,7 @@ body, html
     *
       opacity: 0.5
 
-// #region animations
-
-// #region explode/implode
-
-/* mixin per generare il keyframde di explode
+// mixin to generate the explode keyframe
 @mixin keyframe-ex($name, $left1, $top1, $left2, $top2, $oStart, $oEnd)
   @keyframes #{$name}
     0%
@@ -42,7 +35,8 @@ body, html
       transform: translate($left2, $top2)
       opacity: $oEnd
 
-/* generazione dei keyframes per  explode/implode per 12 elementi
+// generating explode/implode keyframes for 12 elements
+  those keyframes are used by the numbers on the clock
 $oS: 1
 $oE: 0
 +keyframe-ex(explode-12,  0%,   20%,   0%,    -100%, $oS, $oE)
@@ -58,15 +52,17 @@ $oE: 0
 +keyframe-ex(explode-10,  20%,  20%,  -100%,  -100%,  $oS, $oE)
 +keyframe-ex(explode-11,  20%,  20%,  -100%,  -100%,  $oS, $oE)
 
-/* mixin di impostazioni per l'animazione explode/implode
+// settings mixin for explode/implode animation
+  this mixin contains the details of the single animation
 @mixin explode($i, $direction: normal, $delay: 0ms, $duration: 250ms)
   animation: explode-#{$i} $duration cubic-bezier(0.52, -0.05, 1, 1.07)
     direction:  $direction
     delay:      $delay
     fill-mode:  forwards
 
-/* mixin che richiama l'animazione explode/implode
-@mixin explode-implode()
+// mixin to call explode/implode animations
+  assigning each class a corresponding animation
+@mixin explode-implode
   @for $i from 1 through 12
     .explode-#{$i}
       +explode(#{$i}, normal, 0, 500ms)
@@ -74,10 +70,6 @@ $oE: 0
   @for $i from 1 through 12
     .implode-#{$i}
       +explode(#{$i}, reverse)
-
-// #endregion
-
-// #region elongate/shorten
 
 /*keyframe per l'animazione elongate/shorten
 @keyframes elongate
@@ -91,14 +83,14 @@ $oE: 0
     height: 120%
     opacity: 0
 
-/* mixin di impostazioni per l'animazione elongate/shorten
+// mixin di impostazioni per l'animazione elongate/shorten
 @mixin elongate($direction: normal, $delay: 0ms, $duration: 250ms)
   animation: elongate $duration cubic-bezier(0.52, -0.05, 1, 1.07)
     direction:  $direction
     delay:      $delay
     fill-mode:  forwards
 
-/* mixin per richiamare l'animazione elongate/shorten
+// mixin per richiamare l'animazione elongate/shorten
 @mixin elongate-shorten()
   .elongate
     +elongate()
@@ -110,31 +102,29 @@ $oE: 0
 
 // #region fade
 
-/* keyframe per l'animazione fade-in/out
+// keyframe for fade-in/fade-out animation
+  this animation is used by the hand of the clock
 @keyframes tp-fade-out
   from
     opacity: 1
   to
     opacity: 0
 
-/* mixin di impostazioni per l'animazione fade-in/out
+// settings mixin for fade-in/fade-out animation
+  details of the animation
 @mixin fade($direction: normal, $delay: 0ms, $duration: 330ms)
   animation: tp-fade-out $duration ease-in-out
     direction:  $direction
     delay:      $delay
     fill-mode:  forwards
 
-/* mixin per richiamare l'animazione fade-in/out
-@mixin fade-in-out()
+// mixin to call fade-in/fade-out animation
+@mixin fade-in-out
   .fade-out
     +fade(normal, 0, 500ms)
 
   .fade-in
     +fade(reverse)
-
-// #endregion
-
-// #endregion
 
 .timepicker#tmpicker
 
@@ -186,6 +176,7 @@ $oE: 0
   .timepicker-absolute
 
   .timepicker-toggle
+    text-align: right
     padding: 10px
     line-height: normal
     height: auto
@@ -236,15 +227,13 @@ $oE: 0
       position: relative
       margin: 0 auto
 
-      +explode-implode()
-      +fade-in-out()
+      +explode-implode
+      +fade-in-out
       // +elongate-shorten()
 
       .time
         font-size: 10px
         position: absolute
-        // margin-top: -15px
-        // margin-left: -15px
         background-color: #b4b4b4
         border-radius: 50%
         padding: 5px
@@ -252,7 +241,6 @@ $oE: 0
         width: 28px
         box-sizing: border-box
         text-align: center
-        // font-size: 13px
         cursor: pointer
         line-height: 18px
 
@@ -265,7 +253,6 @@ $oE: 0
         background: transparent
 
       .selected
-        // background: rgba(var(--hue), 0.4)
         background: var(--hue)
         opacity: 0.4
         color: white
@@ -280,7 +267,6 @@ $oE: 0
         left: calc(50% - 2px)
 
       .active
-        // background: rgba(var(--hue), 0.4)
         background: var(--hue)
         opacity: 0.4
 
@@ -293,9 +279,7 @@ $oE: 0
         top: calc(50% - 3px)
         left: calc(50% - 3px)
 
-      // #region time(numeri-outer)
-
-
+      // outer circle numbers positioning
       .time-1
         top: 17px
         left: calc(50% + 46px)
@@ -344,9 +328,7 @@ $oE: 0
         top: 0
         left: calc(50% - 14px)
 
-      // #endregion
-
-      // #region hand-l(lancetta)
+      // outer circle hand settings
       .hand-l-12
         left: calc(50% - 1px)
 
@@ -414,9 +396,6 @@ $oE: 0
         left: calc(50% - 29px)
         transform: rotate(330deg)
 
-
-      // #endregion
-
       .time-circle-inner
         margin: 0 auto
         position: absolute
@@ -425,8 +404,8 @@ $oE: 0
         top: 40px
         bottom: 40px
 
-        +explode-implode()
-        +fade-in-out()
+        +explode-implode
+        +fade-in-out
         // +elongate-shorten()
 
         .time
@@ -437,7 +416,6 @@ $oE: 0
 
         .selected
           color: white
-          // background: rgba(var(--hue), 0.4)
           background: var(--hue)
           opacity: 0.4
 
@@ -449,13 +427,10 @@ $oE: 0
           height: 66px
 
         .active
-          // background: rgba(var(--hue), 0.4)
           background: var(--hue)
           opacity: 0.4
 
-
-        // #region time(numeri-inner)
-
+        // inner circle numbers positioning
         .time-1
           top: 8px
           left: calc(50% + 60px - 25px)
@@ -480,7 +455,6 @@ $oE: 0
           top: 164px
           left: calc(50% - 14px)
 
-
         .time-11
           top: 8px
           right: calc(50% + 60px - 28px)
@@ -504,13 +478,8 @@ $oE: 0
         .time-12
           top: -7px
           left: calc(50% - 14px)
-        // #endregion
 
-        // #region hand(lancetta)
-
-        // top: calc(50% - 69px)
-        // left: calc(50% - 2px)
-
+        // inner circle hand settings
         .hand-12
           left: calc(50% - 1px)
           top: calc(50% - 74px)
@@ -580,8 +549,6 @@ $oE: 0
           height: 71px
           transform: rotate(328deg)
 
-        // #endregion
-
   .timepicker-footer
     margin-top: 10px
     height: 40px
@@ -602,6 +569,7 @@ $oE: 0
       cursor: pointer
       height: 100%
 
+// rotate the timepicker horizontally when in landscape mode ( width > height )
 @media (orientation: landscape)
   .timepicker#tmpicker
 
