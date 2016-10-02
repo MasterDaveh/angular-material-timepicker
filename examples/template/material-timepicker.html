@@ -1,0 +1,29 @@
+
+<div id="tmpicker" class="timepicker">
+  <div ng-class="{'active': state}" ng-click="setState(false)" class="timepicker-modal"></div>
+  <input type="hidden" ng-model="model"/>
+  <div ng-click="toggleState()" ng-class="{'error': err}" class="timepicker-display timepicker-toggle mbutton">{{display.hh}}:{{display.mm}}</div>
+  <div ng-if="state" class="timepicker-content">
+    <div class="last-time">{{display.hh}}:{{display.mm}}</div>
+    <div class="timepicker-preview">
+      <div class="wrapper"><span ng-click="goHours()" ng-class="{'disable': show.minutes}">{{timePreview.hh}}</span><span class="disable">:</span><span ng-click="goMinutes()" ng-class="{'disable': show.hours}">{{timePreview.mm}}</span></div>
+    </div>
+    <div class="timepicker-section timepicker-date-time">
+      <div class="time-circle-outer">
+        <div class="time-circle-center"></div>
+        <div ng-class="{'deg-{{$index+1}}': true, 'hand-l-{{$index+1}}': true, 'active': hour==h, 'fade-out': show.explode, 'fade-in': !show.explode}" ng-repeat="h in [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 00]" ng-show="show.hours" class="time-circle-hand time-circle-hand-large"></div>
+        <div ng-class="{'selected': hour==time, 'no-selected': hour!=time, 'time-{{$index+1}}': true, 'explode-{{$index+1}}': show.explode, 'implode-{{$index+1}}': !show.explode}" ng-click="setHour(time)" ng-repeat="time in ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '00']" ng-show="show.hours" class="time">{{time}}</div>
+        <div ng-class="{'deg-{{$index+1}}': true, 'hand-l-{{$index+1}}': true, 'active': minute==min, 'fade-out': show.explode_min, 'fade-in': !show.explode_min}" ng-repeat="min in [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 0]" ng-show="show.minutes" class="time-circle-hand time-circle-hand-large"></div>
+        <div ng-class="{'selected': minute==time, 'no-selected': minute!=time, 'time-{{$index+1}}': true, 'explode-{{$index+1}}': show.explode_min, 'implode-{{$index+1}}': !show.explode_min,}" ng-click="setMinutes(time)" ng-repeat="time in ['5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '00']" ng-show="show.minutes" class="time minute">{{time}}</div>
+        <div ng-show="show.hours" class="time-circle-inner">
+          <div ng-class="{'deg-{{h}}': true, 'hand-{{$index+1}}': true, 'active': hour==h, 'fade-out': show.explode, 'fade-in': !show.explode}" ng-repeat="h in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" class="time-circle-hand"></div>
+          <div ng-class="{'selected': hour==time, 'no-selected': hour!=time, 'time-{{$index+1}}': true, 'explode-{{$index+1}}': show.explode, 'implode-{{$index+1}}': !show.explode}" ng-click="setHour(time)" ng-repeat="time in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" class="time">{{time}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="timepicker-footer">
+      <button ng-click="ok()" class="mbutton">OK</button>
+      <button ng-click="cancel()" class="mbutton">CANCEL</button>
+    </div>
+  </div>
+</div>

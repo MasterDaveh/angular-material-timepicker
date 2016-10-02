@@ -1,6 +1,4 @@
-.timepicker#tmpicker { --hue: #054351; --hue-light: #165361; }
-
-.mbutton, button { background: transparent; border: none; transition: background 330ms ease-in-out; outline: none; }
+.mbutton, button { background: transparent; border: none; outline: none; }
 
 .mbutton:active, button:active { background: rgba(0, 0, 0, 0.1); }
 
@@ -112,7 +110,7 @@
 
 .timepicker#tmpicker .timepicker-toggle { text-align: right; padding: 10px; line-height: normal; height: auto; color: rgba(0, 0, 0, 0.7); cursor: pointer; font-weight: 400; font-size: 14px; }
 
-.timepicker#tmpicker .timepicker-preview { height: auto; background: var(--hue-light); transition: padding 330ms cubic-bezier(0.4, 0, 0.2, 1); padding: 20px; }
+.timepicker#tmpicker .timepicker-preview { height: auto; background: #165361; transition: padding 330ms cubic-bezier(0.4, 0, 0.2, 1); padding: 20px; }
 
 .timepicker#tmpicker .timepicker-preview .wrapper { font-size: 0px; text-align: center; padding-bottom: 0px; font-weight: 400; transition: all 330ms cubic-bezier(0.4, 0, 0.2, 1); }
 
@@ -184,11 +182,11 @@
 
 .timepicker#tmpicker .timepicker-section .time-circle-outer .no-selected { background: transparent; }
 
-.timepicker#tmpicker .timepicker-section .time-circle-outer .selected { background: var(--hue); opacity: 0.4; color: white; }
+.timepicker#tmpicker .timepicker-section .time-circle-outer .selected { background: #054351; opacity: 0.4; color: white; }
 
 .timepicker#tmpicker .timepicker-section .time-circle-outer .time-circle-hand-large { background: transparent; width: 2px; height: 104px; position: absolute; top: calc(50% - 107px); left: calc(50% - 2px); }
 
-.timepicker#tmpicker .timepicker-section .time-circle-outer .active { background: var(--hue); opacity: 0.4; }
+.timepicker#tmpicker .timepicker-section .time-circle-outer .active { background: #054351; opacity: 0.4; }
 
 .timepicker#tmpicker .timepicker-section .time-circle-outer .time-circle-center { width: 6px; height: 6px; background: rgba(0, 0, 0, 0.7); border-radius: 50%; position: absolute; top: calc(50% - 3px); left: calc(50% - 3px); }
 
@@ -298,11 +296,11 @@
 
 .timepicker#tmpicker .timepicker-section .time-circle-outer .time-circle-inner .no-selected { background: transparent; }
 
-.timepicker#tmpicker .timepicker-section .time-circle-outer .time-circle-inner .selected { color: white; background: var(--hue); opacity: 0.4; }
+.timepicker#tmpicker .timepicker-section .time-circle-outer .time-circle-inner .selected { color: white; background: #054351; opacity: 0.4; }
 
 .timepicker#tmpicker .timepicker-section .time-circle-outer .time-circle-inner .time-circle-hand { position: absolute; background: transparent; width: 2px; height: 66px; }
 
-.timepicker#tmpicker .timepicker-section .time-circle-outer .time-circle-inner .active { background: var(--hue); opacity: 0.4; }
+.timepicker#tmpicker .timepicker-section .time-circle-outer .time-circle-inner .active { background: #054351; opacity: 0.4; }
 
 .timepicker#tmpicker .timepicker-section .time-circle-outer .time-circle-inner .time-1 { top: 8px; left: calc(50% + 60px - 25px); }
 
@@ -356,7 +354,7 @@
 
 .timepicker#tmpicker .timepicker-footer:after { clear: both; }
 
-.timepicker#tmpicker .timepicker-footer button { display: inline-block; box-sizing: border-box; float: right; padding: 10px; color: var(--hue-light); font-weight: 700; cursor: pointer; height: 100%; }
+.timepicker#tmpicker .timepicker-footer button { display: inline-block; box-sizing: border-box; float: right; padding: 10px; color: #165361; font-weight: 700; cursor: pointer; height: 100%; }
 
 @media (orientation: landscape) { .timepicker#tmpicker .timepicker-content { transform: rotate(-90deg); width: 320px; }
   .timepicker#tmpicker .timepicker-content .timepicker-preview { padding: 40px; }
